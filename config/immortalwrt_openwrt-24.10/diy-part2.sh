@@ -3,7 +3,7 @@
 # https://github.com/ophub/amlogic-s9xxx-openwrt
 # Description: Automatically Build OpenWrt
 # Function: Diy script (After Update feeds, Modify the default IP, hostname, theme, add/remove software packages, etc.)
-# Source code repository: https://github.com/immortalwrt/immortalwrt / Branch: openwrt-24.10
+# Source code repository: https://github.com/immortalwrt/immortalwrt / Branch: 24.10
 #========================================================================================================================
 
 # ------------------------------- Main source started -------------------------------
@@ -24,7 +24,7 @@ sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package/base-files/files/etc/openwrt_release
 echo "DISTRIB_SOURCEREPO='github.com/immortalwrt/immortalwrt'" >>package/base-files/files/etc/openwrt_release
 echo "DISTRIB_SOURCECODE='immortalwrt'" >>package/base-files/files/etc/openwrt_release
-echo "DISTRIB_SOURCEBRANCH='openwrt-24.10'" >>package/base-files/files/etc/openwrt_release
+echo "DISTRIB_SOURCEBRANCH='24.10'" >>package/base-files/files/etc/openwrt_release
 
 # Set ccache
 # Remove existing ccache settings
