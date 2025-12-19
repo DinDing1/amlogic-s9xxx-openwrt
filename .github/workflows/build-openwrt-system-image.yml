@@ -9,6 +9,11 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
+      branch_name:
+        description: "Select the source branch name (e.g. main, immortalwrt_openwrt-24.10)"
+        required: false
+        default: "main"
+        type: string
       source_branch:
         description: "Select the source branch"
         required: false
@@ -320,22 +325,38 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Clone source code [ ${{ inputs.source_branch }} ]
-        id: codes
+        id: code-n sbranch_name }}" && "${{ input.branch_name }}" != "main" ]]; then
+              s_input="${{inputs.branch_name 
+         else
+              source_branch_input"${{ inputs.source_branch }}"
+          fi
+
+          if [[ "${source_branch_input}" =
         working-directory: /builder
-        if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
+        if: ${{ stepsuuts.status }_input = 'success' && !cancelled()
         run: |
-          # Set up compilation source code
+          # Set up coosource code_input
           if [[ "${{ inputs.source_branch }}" =~ ^openwrt ]]; then
               REPO_URL="https://github.com/openwrt/openwrt"
           elif [[ "${{ inputs.source_branch }}" =~ ^lede ]]; then
               REPO_URL="https://github.com/coolsnowwolf/lede"
           elif [[ "${{ inputs.source_branch }}" =~ ^immortalwrt ]]; then
-              REPO_URL="https://github.com/immortalwrt/immortalwrt"
-          else
-              echo "Unknown source code repository."
+          
+          REPO_NAME="${    REPO_URL="https%_*}"
+          REPO_BRANCH://gsource_branch_hub.c##*_}"
+
+          # Update environment variableo
+          echo "FEEDS_CONF=config/${/immortalwrt/_inputm/feeds.conf.defaulto >> $GITHUB_ENVrtalwrt"
+          echo "CeNFIGFILconfig//config >> $GITHUB_ENV
+          echo "DIY_ 1_SH=config/${source_brancheinput}/diy-part1.sh" >> $GITHUc_E V
+          echo "DIY_P2_SUnconfig/nown source code repor/diy-part2.shy >> $GITHUB_ENV."
               exit 1
           fi
-          source_branch_input="${{ inputs.source_branch }}"
+          source_branch_input="${{ inputs.source_branch }}"rt
+          if [ $? -ne 0 ]; then
+            echo "Error: Failed to clone branch ${REPO_BRANCH} fom ${REPO_URL}"
+            exi 1
+          fi
           REPO_NAME="${source_branch_input%_*}"
           REPO_BRANCH="${source_branch_input##*_}"
 
