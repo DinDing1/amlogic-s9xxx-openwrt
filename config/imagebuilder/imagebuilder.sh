@@ -140,11 +140,7 @@ custom_packages() {
     [[ "${?}" -eq "0" ]] || echo -e "${INFO} [ ${argon_theme} ] download failed, will use package manager!"
     echo -e "${INFO} The [ ${argon_theme} ] download attempt completed."
     #
-    argon_i18n="luci-i18n-argon"
-    argon_i18n_down="$(curl -s ${argon_api} | grep "browser_download_url" | grep -oE "https.*${argon_i18n}.*.ipk" | head -n 1)"
-    curl -fsSOJL ${argon_i18n_down}
-    [[ "${?}" -eq "0" ]] || echo -e "${INFO} [ ${argon_i18n} ] download failed, will use package manager!"
-    echo -e "${INFO} The [ ${argon_i18n} ] download attempt completed."
+
 
     # Download other luci-app-xxx
     # ......
