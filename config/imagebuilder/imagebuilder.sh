@@ -141,7 +141,7 @@ custom_packages() {
     echo -e "${INFO} The [ ${argon_theme} ] download attempt completed."
     #
     # Download luci-app-openclash
-    openclash_api="https://api.github.com/repos/vernesong/luci-app-openclash/releases"
+    openclash_api="https://api.github.com/repos/vernesong/OpenClash/releases"
     #
     openclash="luci-app-openclash"
     openclash_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash}.*.ipk" | head -n 1)"
