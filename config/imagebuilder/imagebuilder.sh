@@ -225,7 +225,9 @@ rebuild_firmware() {
         \
         luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon \
         \
-
+        # OpenClash dependencies
+        iptables dnsmasq-full ca-bundle ipset ip-full iptables-mod-tproxy iptables-mod-extra ruby ruby-yaml kmod-tun kmod-inet-diag \
+        \
         ${config_list} \
         "
 
