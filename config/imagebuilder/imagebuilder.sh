@@ -151,27 +151,6 @@ custom_packages() {
     echo -e "${INFO} The [ ${openclash} ] download attempt completed."
     #
     
-    # Download luci-app-openclash
-    openclash_api="https://api.github.com/repos/vernesong/OpenClash/releases"
-    #
-    openclash_plugin="luci-app-openclash"
-    echo -e "${INFO} Fetching OpenClash download URL from GitHub API..."
-    openclash_plugin_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash_plugin}.*.ipk" | head -n 1)"
-    
-    if [[ -z "${openclash_plugin_down}" ]]; then
-        echo -e "${WARNING} Failed to get OpenClash download URL, skipping..."
-        echo -e "${INFO} The [ ${openclash_plugin} ] download attempt completed."
-    else
-        echo -e "${INFO} Downloading OpenClash from: ${openclash_plugin_down}"
-        curl -fsSOJL "${openclash_plugin_down}"
-        if [[ "${?}" -eq "0" ]]; then
-            echo -e "${INFO} The [ ${openclash_plugin} ] is downloaded successfully."
-        else
-            echo -e "${WARNING} [ ${openclash_plugin} ] download failed, but continuing build..."
-            echo -e "${INFO} The [ ${openclash_plugin} ] download attempt completed."
-        fi
-    fi
-
     # Download other luci-app-xxx
     # ......
 
@@ -233,8 +212,7 @@ rebuild_firmware() {
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
         luci-mod-status luci-mod-system luci-proto-3g luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ncm luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
-        iptables dnsmasq-full ca-bundle ipset ip-full iptables-mod-tproxy iptables-mod-extra ruby ruby-yaml kmod-tun kmod-inet-diag \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon luci-app-openclash \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon \
         ${config_list}
         "
 
