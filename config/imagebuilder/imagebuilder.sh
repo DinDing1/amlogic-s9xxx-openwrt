@@ -208,12 +208,15 @@ rebuild_firmware() {
         pigz ppp ppp-mod-pppoe pv rename resize2fs runc tar tini ttyd tune2fs \
         uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch uuidgen wget-ssl whereis \
         which wpad-basic wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
+        \
         luci luci-base luci-compat luci-i18n-base-zh-cn luci-lib-base luci-lib-docker \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
         luci-mod-status luci-mod-system luci-proto-3g luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ncm luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
+        \
         luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon \
-        ${config_list}
+        \
+        ${config_list} \
         "
 
     # Rebuild firmware
