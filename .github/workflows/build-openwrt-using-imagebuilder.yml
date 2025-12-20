@@ -15,7 +15,7 @@ on:
       releases_branch:
         description: "Select the releases branch"
         required: false
-        default: "openwrt:24.10.4"
+        default: "immortalwrt:24.10.4"
         type: choice
         options:
           - openwrt:24.10.4
@@ -239,12 +239,12 @@ on:
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
-        default: "ophub"
+        default: "dinding"
         type: choice
         options:
           - ophub
           - angel
-          - yourname
+          - dinding
 
 env:
   TZ: Etc/UTC
