@@ -281,23 +281,6 @@ custom_settings() {
         else
             error_msg "${release_file} not found."
         fi
-
-
-        # 自定义banner
-        banner_file="${custom_files_path}/etc/banner"
-        if [[ -f "${banner_file}" ]]; then
-            echo -e "${INFO} Copying custom banner file..."
-            cp -f "${banner_file}" "${unpack_path}/etc/banner"
-            echo -e "${INFO} Custom banner file applied successfully."
-            
-            # Also copy banner file to the snapshot directory to prevent firstboot script from overwriting it
-            snap_banner_dir="${unpack_path}/.snapshots/etc-000/etc"
-            [[ -d "${snap_banner_dir}" ]] || mkdir -p "${snap_banner_dir}"
-            cp -f "${banner_file}" "${snap_banner_dir}/banner"
-            echo -e "${INFO} Custom banner file also copied to snapshot directory."
-        else
-            echo -e "${INFO} No custom banner file found at ${banner_file}"
-        fi
         
         # Repack the modified root filesystem
         echo -e "${INFO} Repacking into ${original_filename}..."
