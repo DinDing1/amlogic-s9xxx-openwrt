@@ -155,10 +155,22 @@ custom_packages() {
     openclash_api="https://api.github.com/repos/vernesong/OpenClash/releases"
     #
     openclash_plugin="luci-app-openclash"
+    echo -e "${INFO} Fetching OpenClash download URL from GitHub API..."
     openclash_plugin_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash_plugin}.*.ipk" | head -n 1)"
-    curl -fsSOJL ${openclash_plugin_down}
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${openclash_plugin} ] download failed!"
-    echo -e "${INFO} The [ ${openclash_plugin} ] is downloaded successfully."
+    
+    if [[ -z "${openclash_plugin_down}" ]]; then
+        echo -e "${WARNING} Failed to get OpenClash download URL, skipping..."
+        echo -e "${INFO} The [ ${openclash_plugin} ] download attempt completed."
+    else
+        echo -e "${INFO} Downloading OpenClash from: ${openclash_plugin_down}"
+        curl -fsSOJL "${openclash_plugin_down}"
+        if [[ "${?}" -eq "0" ]]; then
+            echo -e "${INFO} The [ ${openclash_plugin} ] is downloaded successfully."
+        else
+            echo -e "${WARNING} [ ${openclash_plugin} ] download failed, but continuing build..."
+            echo -e "${INFO} The [ ${openclash_plugin} ] download attempt completed."
+        fi
+    fi
 
     # Download other luci-app-xxx
     # ......
