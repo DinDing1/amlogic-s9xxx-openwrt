@@ -151,7 +151,14 @@ custom_packages() {
     echo -e "${INFO} The [ ${openclash} ] download attempt completed."
     #
     
-
+    # Download luci-app-openclash
+    openclash_api="https://api.github.com/repos/vernesong/OpenClash/releases"
+    #
+    openclash_plugin="luci-app-openclash"
+    openclash_plugin_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash_plugin}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${openclash_plugin_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${openclash_plugin} ] download failed!"
+    echo -e "${INFO} The [ ${openclash_plugin} ] is downloaded successfully."
 
     # Download other luci-app-xxx
     # ......
@@ -210,14 +217,13 @@ rebuild_firmware() {
         pigz ppp ppp-mod-pppoe pv rename resize2fs runc tar tini ttyd tune2fs \
         uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch uuidgen wget-ssl whereis \
         which wpad-basic wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
-        dnsmasq-full curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag kmod-nft-tproxy \
         \
         luci luci-base luci-compat luci-i18n-base-zh-cn luci-lib-base luci-lib-docker \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
         luci-mod-status luci-mod-system luci-proto-3g luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ncm luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
         \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon luci-app-openclash \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-theme-argon \
         \
 
         ${config_list} \
