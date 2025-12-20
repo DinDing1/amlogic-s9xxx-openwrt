@@ -235,7 +235,7 @@ on:
       openwrt_ip:
         description: "Set OpenWrt default IP address."
         required: false
-        default: "192.168.1.1"
+        default: "10.10.10.112"
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
@@ -356,7 +356,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             ### OpenWrt Image information
-            - Default IP: `192.168.1.1`
+            - Default IP: `10.10.10.112`
             - Default username: `root`
             - Default password: `password`
             - Default WIFI name: `OpenWrt`
