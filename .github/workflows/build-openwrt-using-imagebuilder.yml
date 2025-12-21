@@ -363,6 +363,3 @@ jobs:
             - Default WIFI password: `none`
             ### Install to EMMC
             - Login to OpenWrt → `System` → `Amlogic Service` → `Install OpenWrt`
-            ### Applicable platform
-            - 🐧 `arm64`
-            - 🐋 Docker image: https://hub.docker.com/u/ophub
