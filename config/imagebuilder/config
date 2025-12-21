@@ -13,10 +13,6 @@
 #======================================================================================
 #
 
-CONFIG_DROPBEAR_SCP=y
-CONFIG_DROPBEAR_SFTPSERVER=y
-CONFIG_DROPBEAR_DBCLIENT=y
-
 CONFIG_PACKAGE_kmod-oaf=y
 CONFIG_PACKAGE_appfilter=y
 CONFIG_PACKAGE_luci-app-appfilter=y
