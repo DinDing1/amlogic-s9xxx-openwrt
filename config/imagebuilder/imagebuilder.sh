@@ -167,7 +167,7 @@ custom_packages() {
     echo -e "${INFO} The [ ${filebrowser_i18n} ] is downloaded successfully."
     
     # Download luci-app-oaf
-    oaf_api="https://api.github.com/repos destan19/OpenAppFilter/releases"
+    oaf_api="https://api.github.com/repos/destan19/OpenAppFilter/releases"
     #
     oaf_plugin="luci-app-oaf"
     oaf_plugin_down="$(curl -s ${oaf_api} | grep "browser_download_url" | grep -oE "https.*${oaf_plugin}.*.ipk" | head -n 1)"
