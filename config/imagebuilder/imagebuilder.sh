@@ -166,21 +166,6 @@ custom_packages() {
     [[ "${?}" -eq "0" ]] || error_msg "[ ${filebrowser_i18n} ] download failed!"
     echo -e "${INFO} The [ ${filebrowser_i18n} ] is downloaded successfully."
     
-    # Download luci-app-oaf
-    oaf_api="https://api.github.com/repos/destan19/OpenAppFilter/releases"
-    #
-    oaf_plugin="luci-app-oaf"
-    oaf_plugin_down="$(curl -s ${oaf_api} | grep "browser_download_url" | grep -oE "https.*${oaf_plugin}.*.ipk" | head -n 1)"
-    curl -fsSOJL ${oaf_plugin_down}
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${oaf_plugin} ] download failed!"
-    echo -e "${INFO} The [ ${oaf_plugin} ] is downloaded successfully."
-    #
-    oaf_i18n="luci-i18n-oaf-zh-cn"
-    oaf_i18n_down="$(curl -s ${oaf_api} | grep "browser_download_url" | grep -oE "https.*${oaf_i18n}.*.ipk" | head -n 1)"
-    curl -fsSOJL ${oaf_i18n_down}
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${oaf_i18n} ] download failed!"
-    echo -e "${INFO} The [ ${oaf_i18n} ] is downloaded successfully."
-    
     # Download other luci-app-xxx
     # ......
 
@@ -244,7 +229,7 @@ rebuild_firmware() {
         luci-mod-status luci-mod-system luci-proto-3g luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ncm luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
         \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-app-filebrowser luci-i18n-filebrowser-zh-cn luci-theme-argon luci-app-openclash luci-app-oaf luci-i18n-oaf-zh-cn \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-app-filebrowser luci-i18n-filebrowser-zh-cn luci-theme-argon luci-app-openclash \
         \
         ${config_list} \
         "
