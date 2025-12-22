@@ -186,6 +186,21 @@ custom_packages() {
     curl -fsSOJL ${lucky_i18n_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${lucky_i18n} ] download failed!"
     echo -e "${INFO} The [ ${lucky_i18n} ] is downloaded successfully."
+
+    # Download luci-app-oaf 应用过滤
+    oaf_api="https://api.github.com/repos/destan19/OpenAppFilter/releases"    
+    #
+    oaf_plugin="luci-app-oaf"
+    oaf_down="$(curl -s ${oaf_api} | grep "browser_download_url" | grep -oE "https.*${oaf_plugin}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${oaf_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${oaf_plugin} ] download failed!"
+    echo -e "${INFO} The [ ${oaf_plugin} ] is downloaded successfully."
+    #
+    oaf_i18n="luci-i18n-oaf-zh-cn"
+    oaf_i18n_down="$(curl -s ${oaf_api} | grep "browser_download_url" | grep -oE "https.*${oaf_i18n}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${oaf_i18n_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${oaf_i18n} ] download failed!"
+    echo -e "${INFO} The [ ${oaf_i18n} ] is downloaded successfully."    
     
     # Download other luci-app-xxx
     # ......
