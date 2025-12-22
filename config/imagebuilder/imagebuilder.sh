@@ -165,6 +165,21 @@ custom_packages() {
     curl -fsSOJL ${filebrowser_i18n_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${filebrowser_i18n} ] download failed!"
     echo -e "${INFO} The [ ${filebrowser_i18n} ] is downloaded successfully."
+
+    # Download luci-app-lucky
+    luckyr_api="https://api.github.com/repos/gdy666/luci-app-lucky/releases"
+    #
+    lucky_plugin="luci-app-lucky"
+    lucky_plugin_down="$(curl -s ${lucky_api} | grep "browser_download_url" | grep -oE "https.*${lucky_plugin}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${lucky_plugin_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${lucky_plugin} ] download failed!"
+    echo -e "${INFO} The [ ${lucky_plugin} ] is downloaded successfully."
+    #
+    lucky_i18n="luci-i18n-lucky-zh-cn"
+    lucky_i18n_down="$(curl -s ${lucky_api} | grep "browser_download_url" | grep -oE "https.*${lucky_i18n}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${lucky_i18n_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${lucky_i18n} ] download failed!"
+    echo -e "${INFO} The [ ${lucky_i18n} ] is downloaded successfully."
     
     # Download other luci-app-xxx
     # ......
