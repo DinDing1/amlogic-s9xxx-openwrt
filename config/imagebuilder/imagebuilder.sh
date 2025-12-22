@@ -167,7 +167,7 @@ custom_packages() {
     echo -e "${INFO} The [ ${filebrowser_i18n} ] is downloaded successfully."
 
     # Download luci-app-lucky
-    lucky_api="https://api.github.com/repos/gdy666/luci-app-lucky/releases"
+    lucky_api="https://api.github.com/repos/sirpdboy/luci-app-lucky/releases"
     #
     lucky_plugin="luci-app-lucky"
     lucky_plugin_down="$(curl -s ${lucky_api} | grep "browser_download_url" | grep -oE "https.*${lucky_plugin}.*.ipk" | head -n 1)"
