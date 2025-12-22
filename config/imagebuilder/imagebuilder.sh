@@ -167,7 +167,13 @@ custom_packages() {
     echo -e "${INFO} The [ ${filebrowser_i18n} ] is downloaded successfully."
 
     # Download luci-app-lucky
-    lucky_api="https://api.github.com/repos/sirpdboy/luci-app-lucky/releases"
+    lucky_api="https://api.github.com/repos/sirpdboy/luci-app-lucky/releases"    
+    #
+    lucky_arm64_plugin="Openwrt_arm64_wanji"
+    lucky_arm64_down="$(curl -s ${lucky_api} | grep "browser_download_url" | grep -oE "https.*${lucky_arm64_plugin}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${lucky_arm64_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${lucky_arm64_plugin} ] download failed!"
+    echo -e "${INFO} The [ ${lucky_arm64_plugin} ] is downloaded successfully."
     #
     lucky_plugin="luci-app-lucky"
     lucky_plugin_down="$(curl -s ${lucky_api} | grep "browser_download_url" | grep -oE "https.*${lucky_plugin}.*.ipk" | head -n 1)"
@@ -244,7 +250,7 @@ rebuild_firmware() {
         luci-mod-status luci-mod-system luci-proto-3g luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ncm luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
         \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-app-filebrowser luci-i18n-filebrowser-zh-cn luci-theme-argon luci-app-openclash luci-app-lucky luci-i18n-lucky-zh-cn \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn luci-app-filebrowser luci-i18n-filebrowser-zh-cn luci-theme-argon luci-app-openclash lucky luci-app-lucky luci-i18n-lucky-zh-cn \
         \
         ${config_list} \
         "
